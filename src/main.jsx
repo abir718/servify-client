@@ -10,6 +10,7 @@ import Hidden from './Hidden.jsx';
 import Addservice from './Components/Addservice.jsx';
 import Myreviews from './Components/Myreviews.jsx';
 import Myservices from './Components/Myservices.jsx';
+import Auth from './Authprovider';
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Auth>
     <RouterProvider router={router} />
-  </StrictMode>,
+    </Auth>
+  </StrictMode>
 )

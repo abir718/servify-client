@@ -32,17 +32,7 @@ const AuthProvider = ({children}) => {
     }
     
 
-    let authInfo = {
-        user,
-        setUser,
-        newUser,
-        logOut,
-        login,
-        loader,
-        changeProfile,
-        signInWithGoogle
-
-    }
+    let authInfo = {user,setUser,newUser,logOut,login,loader,changeProfile,signInWithGoogle}
 
 
     useEffect(()=> {
