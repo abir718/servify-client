@@ -11,12 +11,17 @@ import Addservice from './Components/Addservice.jsx';
 import Myreviews from './Components/Myreviews.jsx';
 import Myservices from './Components/Myservices.jsx';
 import Auth from './Authprovider';
+import Homecontent from './HomeContents/Homecontent.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
     children: [
+      {
+        path: '/',
+        element: <Homecontent />,
+      },
       {
         path: '/login',
         element: <Login />,
