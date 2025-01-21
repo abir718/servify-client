@@ -3,7 +3,7 @@ import Others from "./Others";
 
 const Homecontent = () => {
     return (
-        <div className="bg-base-200">
+        <div>
             <Others></Others>
         </div>
     );
