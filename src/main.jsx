@@ -12,6 +12,7 @@ import Myreviews from './Components/Myreviews.jsx';
 import Myservices from './Components/Myservices.jsx';
 import Auth from './Authprovider';
 import Homecontent from './HomeContents/Homecontent.jsx';
+import Details from './Components/Details.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,12 @@ const router = createBrowserRouter([
       {
         path: '/services',
         element: <Services/>,
+        loader: () => fetch('http://localhost:5000/services')
+      },
+      {
+        path: '/services/:id',
+        element: <Details/>,
+        loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
       },
       {
         path: '/addservice',

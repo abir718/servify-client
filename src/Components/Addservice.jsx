@@ -1,9 +1,13 @@
-
-
 import toast from "react-hot-toast";
+import { authContext } from "../Authprovider";
+import { useContext } from "react";
+
+const Addservice = () => {
+
+    const { user } = useContext(authContext);
+    const email = user?.email;
 
 
-const addservice = () => {
 
     const category = ["Food", "Appliances", "Pet", "Medical", "Construction"];
 
@@ -18,18 +22,19 @@ const addservice = () => {
         const category = form.category.value;
         const price = form.price.value;
         const newService = {image , title , name , website , description , category , price}
-        console.log(newService)
+        const service = {email , ...newService}
+        console.log(service)
 
         const valid = validateForm(newService)
 
         if (valid) {
 
-            fetch('http://localhost:5000/addservice' , {
+            fetch('http://localhost:5000/services' , {
               method:'POST',
               headers:{
                   'content-type':'application/json'
               },
-              body:JSON.stringify(newService)
+              body:JSON.stringify(service)
           })
           .then(res => res.json())
           .then(data =>{
@@ -48,31 +53,31 @@ const addservice = () => {
 
     };
 
-    const validateForm = (service) => {
+    const validateForm = (ser) => {
         let isValid = true;
       
-        if (!service.image || !service.image.trim().startsWith("http")) {
+        if (!ser.image || !ser.image.trim().startsWith("http")) {
           toast.error("Image must be a valid link.");
           isValid = false;
         }
 
-        if (!service.website || !service.website.trim().startsWith("http")) {
+        if (!ser.website || !ser.website.trim().startsWith("http")) {
             toast.error("Website must be a valid link.");
             isValid = false;
           }
       
-        if (!service.title || service.title.length < 2) {
+        if (!ser.title || ser.title.length < 2) {
           toast.error("Title must be at least 2 characters long.");
           isValid = false;
         }
       
-        if (!service.price || isNaN(service.price)) {
+        if (!ser.price || isNaN(ser.price)) {
             toast.error("Please enter a valid price.");
             isValid = false;
           }
           
       
-        if (!service.description || service.description.length < 10) {
+        if (!ser.description || ser.description.length < 10) {
           toast.error("Description must be at least 10 characters long.");
           isValid = false;
         }
@@ -150,4 +155,4 @@ const addservice = () => {
     );
 };
 
-export default addservice;
+export default Addservice;
