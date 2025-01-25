@@ -12,6 +12,8 @@ const Details = () => {
     const { user } = useContext(authContext);
     const reviewerName = user?.displayName;
     const reviewerPic = user?.photoURL;
+    const reviewerEmail = user?.email;
+    const serviceTitle = loadServices.title
     const navigate = useNavigate();
     const serviceId = loadServices._id
 
@@ -30,7 +32,7 @@ const Details = () => {
         const rating = parseInt(form.rating.value) || 0;
         const newReview = { review, rating };
 
-        const addReview = { ...newReview, reviewerName, reviewerPic, serviceId }
+        const addReview = { ...newReview, reviewerName, reviewerPic, serviceId , reviewerEmail , serviceTitle }
         const isValid = validateForm(newReview)
 
 
