@@ -17,6 +17,9 @@ const Details = () => {
     const navigate = useNavigate();
     const serviceId = loadServices._id
 
+    const now = new Date();
+    const timeser = `${now.getDate()}/${now.getMonth() + 1}`;
+
 
     const handleSubmit = (e) => {
 
@@ -32,7 +35,7 @@ const Details = () => {
         const rating = parseInt(form.rating.value) || 0;
         const newReview = { review, rating };
 
-        const addReview = { ...newReview, reviewerName, reviewerPic, serviceId , reviewerEmail , serviceTitle }
+        const addReview = { ...newReview, reviewerName, reviewerPic, serviceId , reviewerEmail , serviceTitle , timeser }
         const isValid = validateForm(newReview)
 
 
@@ -127,6 +130,7 @@ const Details = () => {
                                         <div className="flex items-center gap-2">
                                             <img className="rounded-lg w-10" src={review.reviewerPic} alt="" />
                                             <p className="font-bold">{review.reviewerName}</p>
+                                            <p>{review.timeser}</p>
                                         </div>
                                         <div>
                                             <Rating name="rating" value={review.rating} size="medium" readOnly />

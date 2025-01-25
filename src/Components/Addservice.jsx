@@ -7,9 +7,11 @@ const Addservice = () => {
     const { user } = useContext(authContext);
     const email = user?.email;
 
+    const now = new Date();
+    const timeser = `${now.getDate()}/${now.getMonth() + 1}`;
 
 
-    const category = ["Food", "Appliances", "Pet", "Medical", "Construction"];
+    const category = ["Food", "Pet", "Medical", "Hotels" , "Construction" , "Home Service" , "Events & Parties" , "Sports" , "Travel" , "Finance"];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,7 +23,7 @@ const Addservice = () => {
         const description = form.description.value;
         const category = form.category.value;
         const price = form.price.value;
-        const newService = {image , title , name , website , description , category , price}
+        const newService = {image , title , name , website , description , category , price , timeser}
         const service = {email , ...newService}
         console.log(service)
 
