@@ -14,6 +14,7 @@ import Auth from './Authprovider';
 import Homecontent from './HomeContents/Homecontent.jsx';
 import Details from './Components/Details.jsx';
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,7 +40,14 @@ const router = createBrowserRouter([
       {
         path: '/services/:id',
         element: <Details/>,
-        loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+        loader: async ({ params }) => {
+          const service = await fetch(`http://localhost:5000/services/${params.id}`);
+          const reviews = await fetch(`http://localhost:5000/reviews`);
+      
+          const loadServices = await service.json();
+          const loadReviews = await reviews.json();
+          return { loadServices, loadReviews };
+        },
       },
       {
         path: '/addservice',
