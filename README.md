@@ -3,7 +3,7 @@
 Our website provides user a varities of service for them to enjoy or to review or even add service themself.
 
 Live link : https://servify-77a77.web.app/
-Backup link : https://phero-cineflix-a10.netlify.app/
+Backup link : https://ph-servify-a11.netlify.app/
 
 Category : https://docs.google.com/document/d/1pG3Lea3dzAqI2bgxgob1oh1lmnk7pSpG3gaXeBWfUbg/edit?tab=t.0
 
