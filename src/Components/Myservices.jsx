@@ -49,7 +49,7 @@ const Myservices = () => {
         const valid = validateForm(updatedService);
 
         if (valid) {
-            fetch(`http://localhost:5000/services/${updateService._id}`, {
+            fetch(`https://servify-server.vercel.app/services/${updateService._id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const Myservices = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/services/${id}`, {
+                fetch(`https://servify-server.vercel.app/services/${id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())

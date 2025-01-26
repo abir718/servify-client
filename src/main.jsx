@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Homecontent />,
-        loader: () => fetch('http://localhost:5000/services')
+        loader: () => fetch('https://servify-server.vercel.app/services')
       },
       {
         path: '/login',
@@ -38,14 +38,14 @@ const router = createBrowserRouter([
       {
         path: '/services',
         element: <Services/>,
-        loader: () => fetch('http://localhost:5000/services')
+        loader: () => fetch('https://servify-server.vercel.app/services')
       },
       {
         path: '/services/:id',
         element: <Details/>,
         loader: async ({ params }) => {
-          const service = await fetch(`http://localhost:5000/services/${params.id}`);
-          const reviews = await fetch(`http://localhost:5000/reviews`);
+          const service = await fetch(`https://servify-server.vercel.app/services/${params.id}`);
+          const reviews = await fetch(`https://servify-server.vercel.app/reviews`);
       
           const loadServices = await service.json();
           const loadReviews = await reviews.json();
@@ -59,12 +59,12 @@ const router = createBrowserRouter([
       {
         path: '/myreviews',
         element:<Hidden><Myreviews/></Hidden>,
-        loader: () => fetch(`http://localhost:5000/reviews`)
+        loader: () => fetch(`https://servify-server.vercel.app/reviews`)
       },
       {
         path: '/myservices',
         element:<Hidden><Myservices/></Hidden>,
-        loader: () => fetch('http://localhost:5000/services')
+        loader: () => fetch('https://servify-server.vercel.app/services')
       },
       
 

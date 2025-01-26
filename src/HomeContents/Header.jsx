@@ -183,11 +183,19 @@ const Header = () => {
                         </button>
                     </>
                 ) : (
+                    <div className="flex gap-3">
                     <NavLink to="/login">
                         <button className="font-medium border-[2px] border-[#2C485F] bg-[#2C485F] text-white px-3 py-2 rounded-lg hover:rounded-full transition-transform duration-500">
                             Login
                         </button>
                     </NavLink>
+                    <NavLink to="/register">
+                        <button className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition-transform duration-500">
+                            Register
+                        </button>
+                    </NavLink>
+                    </div>
+
                 )}
             </div>
         </div>

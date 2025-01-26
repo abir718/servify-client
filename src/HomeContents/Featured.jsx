@@ -9,7 +9,7 @@ const Featured = ({ loadServices }) => {
             <div className="flex items-center justify-center mb-10">
 
                 <div className="grid lg:grid-cols-6 md:grid-cols-2 gap-10">
-                    {loadServices.map((service) => (
+                    {loadServices.slice(0,6).map((service) => (
                         <div key={service._id}>
                             <div className="border-[2px] border-[#2C485F] w-fit  p-3 rounded-lg">
                                 <img className="w-52 h-36 rounded-lg" src={service.image} alt="" />
