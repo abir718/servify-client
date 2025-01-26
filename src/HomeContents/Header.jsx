@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { authContext } from "../Authprovider";
 import { motion } from "framer-motion";
-
+import { RxCross2 } from "react-icons/rx";
+import { RxHamburgerMenu } from "react-icons/rx";
 const Header = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const underlineVariants = {
         hidden: { width: 0 },
@@ -12,15 +14,27 @@ const Header = () => {
 
     const { user, logOut } = useContext(authContext);
 
-    // [#2C485F]  
     return (
-        <div className="mx-auto w-[80%] flex items-center justify-between">
-            <div>
+        <div className="mx-auto w-[90%] flex items-center justify-between py-4">
+            <div className="sm:hidden">
+                <button onClick={() => setMenuOpen(!menuOpen)} className="text-gray-600">
+                    {menuOpen ? (
+                        <span className="text-xl"><RxCross2 /></span> 
+                    ) : (
+                        <span className="text-xl"><RxHamburgerMenu /></span> 
+                    )}
+                </button>
+            </div>
+
+            <div className="hidden sm:block">
                 <img className="w-14" src="/images/survify.png" alt="" />
             </div>
-            <div>
+
+            <div
+                className={`absolute sm:static top-16  bg-white sm:bg-transparent shadow-lg sm:shadow-none rounded-lg p-4 sm:p-0 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center transition-transform duration-300 ${menuOpen ? "block" : "hidden sm:flex"}`}
+            >
                 {user && user.email ? (
-                    <div className="flex gap-6">
+                    <>
                         <NavLink to="/" className="relative font-medium text-gray-400">
                             {({ isActive }) => (
                                 <>
@@ -57,15 +71,10 @@ const Header = () => {
                             )}
                         </NavLink>
 
-                        <NavLink
-                            to="/addservice"
-                            className="relative font-medium text-gray-400"
-                        >
+                        <NavLink to="/addservice" className="relative font-medium text-gray-400">
                             {({ isActive }) => (
                                 <>
-                                    <span className={isActive ? "text-[#2C485F]" : ""}>
-                                        Add Service
-                                    </span>
+                                    <span className={isActive ? "text-[#2C485F]" : ""}>Add Service</span>
                                     {isActive && (
                                         <motion.div
                                             className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
@@ -83,9 +92,7 @@ const Header = () => {
                         <NavLink to="/myreviews" className="relative font-medium text-gray-400">
                             {({ isActive }) => (
                                 <>
-                                    <span className={isActive ? "text-[#2C485F]" : ""}>
-                                        My Reviews
-                                    </span>
+                                    <span className={isActive ? "text-[#2C485F]" : ""}>My Reviews</span>
                                     {isActive && (
                                         <motion.div
                                             className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
@@ -103,9 +110,7 @@ const Header = () => {
                         <NavLink to="/myservices" className="relative font-medium text-gray-400">
                             {({ isActive }) => (
                                 <>
-                                    <span className={isActive ? "text-[#2C485F]" : ""}>
-                                        My Services
-                                    </span>
+                                    <span className={isActive ? "text-[#2C485F]" : ""}>My Services</span>
                                     {isActive && (
                                         <motion.div
                                             className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
@@ -119,9 +124,9 @@ const Header = () => {
                                 </>
                             )}
                         </NavLink>
-                    </div>
+                    </>
                 ) : (
-                    <div className="flex gap-6">
+                    <>
                         <NavLink to="/" className="relative font-medium text-gray-400">
                             {({ isActive }) => (
                                 <>
@@ -157,26 +162,35 @@ const Header = () => {
                                 </>
                             )}
                         </NavLink>
-                    </div>
+                    </>
                 )}
             </div>
 
-            <div>
-                {user && user.email ?
-                    <div className="flex items-center gap-3">
-                        <img className="w-10" src={user.photoURL} title={user.displayName} alt="User Avatar" />
-                        <button className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition-transform  duration-500" onClick={logOut}>Log-out</button>
-                    </div> :
-                    <div className="flex gap-3">
-                        <NavLink to="/login"><button className="font-medium border-[2px] border-[#2C485F] bg-[#2C485F] text-white px-3 py-2 rounded-lg hover:rounded-full transition-transform  duration-500">Login</button></NavLink>
-                        <NavLink to="/register"><button className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition-transform  duration-500">Register</button></NavLink>
-                    </div>
-                }
+            <div className="flex items-center gap-3">
+                {user && user.email ? (
+                    <>
+                        <img
+                            className="w-10"
+                            src={user.photoURL}
+                            title={user.displayName}
+                            alt="User Icon"
+                        />
+                        <button
+                            className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition-transform duration-500"
+                            onClick={logOut}
+                        >
+                            Log-out
+                        </button>
+                    </>
+                ) : (
+                    <NavLink to="/login">
+                        <button className="font-medium border-[2px] border-[#2C485F] bg-[#2C485F] text-white px-3 py-2 rounded-lg hover:rounded-full transition-transform duration-500">
+                            Login
+                        </button>
+                    </NavLink>
+                )}
             </div>
-
-
         </div>
-
     );
 };
 

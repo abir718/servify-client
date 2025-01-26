@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { authContext } from "../Authprovider";
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 
 const Addservice = () => {
 
@@ -25,7 +26,6 @@ const Addservice = () => {
         const price = form.price.value;
         const newService = {image , title , name , website , description , category , price , timeser}
         const service = {email , ...newService}
-        console.log(service)
 
         const valid = validateForm(newService)
 
@@ -89,6 +89,7 @@ const Addservice = () => {
 
     return (
         <div>
+            <Helmet><title>Add Service | Servify</title></Helmet> 
             <div className="hero bg-base-200">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl my-10">
                     <form className="card-body" onSubmit={handleSubmit}>

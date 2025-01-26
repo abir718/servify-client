@@ -5,6 +5,7 @@ import Rating from '@mui/material/Rating';
 import { FaTrash, FaPen } from "react-icons/fa";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Myreviews = () => {
     const reviews = useLoaderData();
@@ -115,11 +116,12 @@ const Myreviews = () => {
 
     return (
         <div className="bg-base-200 py-10">
+            <Helmet><title>My Reviews | Servify</title></Helmet> 
             <h1 className="font-bold text-3xl mx-auto ml-10">My Reviews</h1>
             {review
                 .map((review) => (
                     <div key={review._id}>
-                        <div className="border-[2px] border-gray-400 rounded-lg p-3 m-3 bg-white w-[70%] mx-auto flex justify-between">
+                        <div className="border-[2px] border-gray-400 rounded-lg p-3 m-3 bg-white w-[70%] mx-auto md:flex justify-between">
                             <div>
                                 <div className="flex justify-between">
                                     <div className="flex items-center gap-2">

@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { authContext } from '../Authprovider';
+import { Helmet } from 'react-helmet';
 
 const Details = () => {
 
@@ -35,7 +36,7 @@ const Details = () => {
         const rating = parseInt(form.rating.value) || 0;
         const newReview = { review, rating };
 
-        const addReview = { ...newReview, reviewerName, reviewerPic, serviceId , reviewerEmail , serviceTitle , timeser }
+        const addReview = { ...newReview, reviewerName, reviewerPic, serviceId, reviewerEmail, serviceTitle, timeser }
         const isValid = validateForm(newReview)
 
 
@@ -82,8 +83,9 @@ const Details = () => {
 
     return (
         <div className="bg-base-200">
+            <Helmet><title>Details | Servify</title></Helmet>
             <div className="mx-auto w-[80%] flex-col flex items-center gap-4 justify-center py-10">
-                <div className="border-[#2C485F] border-[2px] w-fit p-3 rounded-lg bg-white flex items-center gap-10">
+                <div className="border-[#2C485F] border-[2px] w-fit p-3 rounded-lg bg-white md:flex items-center gap-10">
                     <div>
                         <img className="w-80 h-48 object-cover" src={loadServices.image} alt="" />
                     </div>
@@ -97,13 +99,13 @@ const Details = () => {
 
 
                 </div>
-                <form className=" border-[#2C485F] border-[2px] w-[710px] p-3 rounded-lg bg-white " onSubmit={handleSubmit}>
-                    <div className='flex items-center gap-20'>
+                <form className=" border-[#2C485F] border-[2px] md:w-[710px] p-3 w-full rounded-lg bg-white " onSubmit={handleSubmit}>
+                    <div className='md:flex items-center gap-20'>
                         <div className="form-control">
                             <label className="label">
                                 <span className="text-xl font-bold">Add a Review</span>
                             </label>
-                            <textarea type="text" name="review" placeholder="review" className="input border-gray-500 input-bordered w-[400px]" required />
+                            <textarea type="text" name="review" placeholder="review" className="input  border-gray-500 input-bordered md:w-[400px]" required />
                         </div>
 
                         <div className="form-control">
@@ -119,8 +121,12 @@ const Details = () => {
                     <button className="py-2 rounded-lg text-white bg-[#2C485F] hover:scale-105 transition duration-300 mt-4 px-2">Add Review</button>
 
                 </form>
-                <div className=" border-[#2C485F] border-[2px] w-[710px] p-3 rounded-lg bg-white ">
-                    <p className='font-bold text-2xl'>All Reviews</p>
+                <div className=" border-[#2C485F] border-[2px] md:w-[710px] w-full p-3 rounded-lg bg-white ">
+                    <div className="flex items-center justify-between">
+                        <p className='font-bold text-2xl'>All Reviews</p>
+                        <p className="text-lg text-gray-600">{reviews.filter(review => review.serviceId === loadServices._id).length} reviews</p>
+                    </div>
+
                     {reviews
                         .filter((review) => review.serviceId === loadServices._id)
                         .map((review) => (

@@ -1,13 +1,52 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 
 const Services = () => {
 
     const loadServices = useLoaderData();
     const [services, setServices] = useState(loadServices);
+    const [search, setSearch] = useState("");
+    const [filter, setFilter] = useState("");
+    const category = ["Food", "Pet", "Medical", "Hotels", "Construction", "Home Service", "Events & Parties", "Sports", "Travel", "Finance"];
+
+
+    const handleSearch = (e) => {
+        const query = e.target.value.toLowerCase();
+        setSearch(query);
+
+        const searchedServices = loadServices.filter((service) => service.title.toLowerCase().includes(query));
+        setServices(searchedServices);
+    };
+
+    const handleFilter = (e) => {
+        const category = e.target.value;
+        setFilter(category);
+
+        const filteredServices = loadServices.filter((service) => (category ? service.category === category : true) && service.title.toLowerCase().includes(search));
+        setServices(filteredServices);
+    };
+
     return (
         <div className="bg-base-200 ">
-            <div className="grid-cols-1 grid lg:grid-cols-3 md:grid-cols-2 w-[80%] mx-auto">
+            <div className="w-[80%] mx-auto md:flex items-center justify-between pt-6">
+                <h1 className="text-3xl font-bold ">All Services</h1>
+                <input type="text" placeholder="Search..." value={search} onChange={handleSearch} className="text-gray-400 border-[2px] p-1 rounded-lg border-gray-500" />
+            </div>
+            <div className="w-[80%] mx-auto flex items-end justify-end mt-4">
+                <select name="category" onChange={handleFilter} className="py-1 border-[2px] border-[#2C485F]" required>
+                    <option value="">Filter</option>
+                    {category.map((category, index) => (
+                        <option key={index} value={category}>
+                            {category}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <Helmet><title> Services | Servify</title></Helmet>
+            <div className="flex items-center justify-center">
+            <div className="grid-cols-1 gap-6 grid lg:grid-cols-3 md:grid-cols-2 md:w-[80%] mx-auto py-6">
                 {services.map((service) => <div
                     key={service._id} >
                     <div className="border-[#2C485F] border-[2px] w-fit p-3 rounded-lg bg-white">
@@ -20,6 +59,8 @@ const Services = () => {
                     </div>
                 </div>)}
             </div>
+            </div>
+
 
 
         </div>

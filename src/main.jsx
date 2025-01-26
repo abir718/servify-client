@@ -13,16 +13,19 @@ import Myservices from './Components/Myservices.jsx';
 import Auth from './Authprovider';
 import Homecontent from './HomeContents/Homecontent.jsx';
 import Details from './Components/Details.jsx';
+import Error from './Error.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
         element: <Homecontent />,
+        loader: () => fetch('http://localhost:5000/services')
       },
       {
         path: '/login',
