@@ -13,6 +13,8 @@ const Myreviews = () => {
     const [review, setReviews] = useState([]);
     const [rating, setRating] = useState(0);
     const [updatereview, setUpdateReview] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     useEffect(() => {
         if (reviews && user) {
@@ -20,6 +22,12 @@ const Myreviews = () => {
             setReviews(userReviews);
         }
     }, [reviews, user]);
+
+    const handleEdit = (review) => {
+        setUpdateReview(review); 
+        setRating(review.rating); 
+        setIsModalOpen(true);  
+    };
 
     const removeReview = (id) => {
         Swal.fire({
@@ -73,12 +81,12 @@ const Myreviews = () => {
                 .then((data) => {
                     if (data.modifiedCount > 0) {
                         toast.success("Review updated successfully!");
+                        setIsModalOpen(false);
                         setReviews((prevReviews) =>
-                            prevReviews.map((rev) =>
-                                rev._id === updatereview._id ? { ...rev, review: updatedReview, rating: updatedRating } : rev
-                            )
+                            prevReviews.map((rev) => rev._id === updatereview._id ? { ...rev, review: updatedReview, rating: updatedRating } : rev)
                         );
-                        closeModal();
+                        
+
                     }
                 });
         }
@@ -100,28 +108,20 @@ const Myreviews = () => {
         return isValid;
     };
 
-    const openModal = (review) => {
-        setUpdateReview(review);
-        setRating(0);
-        document.getElementById("my_modal_1").showModal();
-    };
 
-    const closeModal = () => {
-        setUpdateReview(null);
-        setRating(0);
-        document.getElementById("my_modal_1").close();
-    };
+
+
 
 
 
     return (
-        <div className="bg-base-200 py-10">
-            <Helmet><title>My Reviews | Servify</title></Helmet> 
-            <h1 className="font-bold text-3xl mx-auto ml-10">My Reviews</h1>
+        <div className="py-10">
+            <Helmet><title>My Reviews | Servify</title></Helmet>
+            <h1 className="font-bold text-3xl mx-auto ml-20 py-6">My Reviews</h1>
             {review
                 .map((review) => (
                     <div key={review._id}>
-                        <div className="border-[2px] border-gray-400 rounded-lg p-3 m-3 bg-white w-[70%] mx-auto md:flex justify-between">
+                        <div className="border-[2px] border-gray-400 rounded-lg p-3 m-3 bg-white w-[80%] mx-auto md:flex justify-between">
                             <div>
                                 <div className="flex justify-between">
                                     <div className="flex items-center gap-2">
@@ -135,7 +135,7 @@ const Myreviews = () => {
                                 <p className="mt-2">{review.review}</p>
                             </div>
                             <div className="flex items-center gap-3">
-                                <button><FaPen onClick={() => openModal(review)} size="32" className="text-white bg-[#2C485F] p-2 rounded-lg" /></button>
+                                <button><FaPen onClick={() => handleEdit(review)} size="32" className="text-white bg-[#2C485F] p-2 rounded-lg" /></button>
                                 <button><FaTrash onClick={() => removeReview(review._id)} size="32" className="text-white bg-[#2C485F] p-2 rounded-lg" /></button>
 
                             </div>
@@ -143,31 +143,42 @@ const Myreviews = () => {
                         </div>
                     </div>
                 ))}
-            <dialog id="my_modal_1" className="modal border-[#2C485F] border-[2px] w-[710px] h-fit mx-auto p-3 rounded-lg bg-white" style={{ top: "50%", transform: "translateY(-50%)" }}>
-                <form className="" onSubmit={handleSubmit}>
-                    <div className='flex items-center gap-20'>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="text-xl font-bold">Update Review</span>
-                            </label>
-                            <textarea type="text" name="review" placeholder="review" className="input border-gray-500 input-bordered w-[400px]" required />
-                        </div>
 
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text text-white">Rating</span>
-                            </label>
-                            <div>
-                                <Rating name="rating" value={rating} size="large" onChange={(event, newValue) => setRating(newValue)} />
+            {isModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-5 rounded-md w-[90%] md:w-[400px] relative">
+                        <form className=" p-3 rounded-lg bg-white" onSubmit={handleSubmit}>
+                            <div className=" items-center gap-3 ">
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="text-xl font-bold">Update Review</span>
+                                    </label>
+                                    <textarea
+                                        type="text"
+                                        name="review"
+                                        placeholder="Write your review..."
+                                        className="border border-gray-400 rounded-md p-2"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="text-lg font-bold">Ratings</span>
+                                    </label>
+                                    <Rating name="rating" value={rating} size="large" onChange={(event, newValue) => setRating(newValue)} />
+                                </div>
                             </div>
-                        </div>
+
+                            <div className="flex justify-between">
+                                <button className="mt-4 border-2 border-[#2C485F] rounded-lg text-white bg-[#2C485F] hover:bg-transparent hover:text-[#2C485F] transition duration-300 py-1 px-3">Update</button>
+                                <button className="mt-4 border-2 border-[#2C485F] rounded-lg  text-[#2C485F] py-1 px-3" onClick={() => setIsModalOpen(false)}>Close</button>
+
+                            </div>
+                        </form>
                     </div>
-
-                    <button className="py-2 rounded-lg text-white bg-[#2C485F] hover:scale-105 transition duration-300 mt-4 px-2">Update</button>
-
-                </form>
-                <button className="border-2 border-[#2C485F] text-[#2C485F] px-2 py-1 rounded-md" onClick={closeModal}>Close</button>
-            </dialog>
+                </div>
+            )}
 
 
         </div>

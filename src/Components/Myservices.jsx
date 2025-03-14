@@ -150,7 +150,7 @@ const Myservices = () => {
             <div className="mx-auto ">
                 <div className="mx-auto w-[80%] md:flex items-center justify-between pt-6">
                     <h1 className="text-3xl font-bold mb-4 pt-6">My Services</h1>
-                    <input type="text" placeholder="Search..." value={search} onChange={handleSearch} className="text-gray-400 input border-gray-500 input-bordered" />
+                    <input type="text" placeholder="Search..." value={search} onChange={handleSearch} className="text-gray-400 w-[300px] border-[2px] p-1 mr-10 rounded-md border-gray-500" />
                 </div>
                 <div className="flex items-center justify-center">
                     <div className="grid-cols-1 gap-6 grid lg:grid-cols-3 md:grid-cols-2 md:w-[80%] mx-auto py-6">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <div>
-            <div className="">
+            <div className="bg-base-200">
                 <div className="flex flex-col items-center justify-center gap-2 pt-10">
                     <img className="w-20" src="/images/survify.png" alt="" />
                     <p className="text-[#2C485F] text-lg font-medium text-center">Empowering businesses and individuals with trusted reviews and insights to build better connections – Servify, your partner in reliability.</p>
