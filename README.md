@@ -11,7 +11,7 @@ Category : https://docs.google.com/document/d/1pG3Lea3dzAqI2bgxgob1oh1lmnk7pSpG3
 
 #  Key Features:
 1. Register and login Feature.
-2. Service Addingqqqqqqqqqqqqqa Feature.
+2. Service Adding Feature.
 3. Search option and filter option.
 4. Service reviewing feature.
 5. Service , review update and deletation feature.

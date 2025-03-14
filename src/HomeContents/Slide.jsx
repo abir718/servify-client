@@ -1,37 +1,19 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
 
-const Slide = ({ theme }) => {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerMode: true,
-        centerPadding: "0px",
-    };
-
+export default function Slide() {
     return (
-        <div className="hidden lg:flex justify-center items-center bg-base-200">
-            <div className="w-[80%] mx-auto">
-                <div className="py-8">
-                    <Slider {...settings}>
-                        <div className="flex justify-center items-center">
-                            <img className="w-full h-[750px] object-contain" src="/images/soup.png" alt=""/>
-                        </div>
-                        <div className="flex justify-center items-center">
-                            <img className="w-full h-[750px] object-contain" src="/images/roofer.png" alt=""/>
-                        </div>
-                        <div className="flex justify-center items-center">
-                            <img className="w-full h-[750px] object-contain" src="/images/car.png" alt=""/>
-                        </div>
-                    </Slider>
-                </div>
+        <>
+            <div className='w-[80%] mx-auto mt-4'>
+                <Swiper navigation={true} modules={[Navigation]} loop={true} className="mySwiper">
+                    <SwiperSlide><img className="object-fill" src="/images/res.png" alt="" /></SwiperSlide>
+                    <SwiperSlide><img className="object-fill" src="/images/hotel.png" alt="" /></SwiperSlide>
+                    <SwiperSlide><img className="object-fill" src="/images/medical.png" alt="" /></SwiperSlide>
+                </Swiper>
             </div>
-        </div>
-    );
-};
 
-export default Slide;
+        </>
+    );
+}
