@@ -166,7 +166,7 @@ const Myreviews = () => {
                     <button className="py-2 rounded-lg text-white bg-[#2C485F] hover:scale-105 transition duration-300 mt-4 px-2">Update</button>
 
                 </form>
-                <button onClick={closeModal}>Close</button>
+                <button className="border-2 border-[#2C485F] text-[#2C485F] px-2 py-1 rounded-md" onClick={closeModal}>Close</button>
             </dialog>
 
 
