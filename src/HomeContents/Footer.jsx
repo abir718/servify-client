@@ -9,7 +9,7 @@ const Footer = () => {
                     <p className="text-[#2C485F] text-lg font-medium text-center">Empowering businesses and individuals with trusted reviews and insights to build better connections – Servify, your partner in reliability.</p>
                 </div>
         
-                <footer className="footer lg:w-[80%] mx-auto text-base-content text-lg p-10 flex flex-col sm:flex-row sm:items-start items-center justify-between gap-6">
+                <footer className="footer lg:w-[80%] mx-auto text-base-content text-lg p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
                     <nav className="flex flex-col text-center justify-center md:items-center items-start">
                         <h6 className="font-bold text-xl text-[#2C485F]  mb-4 sm:mb-2">Services</h6>
                         <Link className="link link-hover text-gray-400 mb-2" to={`/services`}>All Services</Link>
@@ -22,7 +22,7 @@ const Footer = () => {
                         <a href="https://www.facebook.com/yuta.553/" className="link link-hover text-gray-400 mb-2">Contact</a>
                     </div>
 
-                    <nav className="flex flex-col items-center sm:items-start">
+                    <nav className="flex flex-col items-center">
                         <h6 className="font-bold text-xl text-[#2C485F]  mb-4 sm:mb-2">Social</h6>
                         <div className="flex gap-4 text-[#2C485F] ">
                             <a href="https://www.facebook.com/yuta.553/" target="_blank" rel="noopener noreferrer">

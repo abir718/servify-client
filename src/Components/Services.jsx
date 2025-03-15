@@ -28,7 +28,7 @@ const Services = () => {
     };
 
     return (
-        <div className="bg-base-200 ">
+        <div className="">
             <div className="w-[80%] mx-auto md:flex items-center justify-between pt-6">
                 <h1 className="text-3xl font-bold ">All Services</h1>
                 <div>
@@ -47,18 +47,28 @@ const Services = () => {
 
             <Helmet><title> Services | Servify</title></Helmet>
             <div className="flex items-center justify-center">
-                <div className="grid-cols-1 gap-6 grid lg:grid-cols-3 md:grid-cols-2 md:w-[80%] mx-auto py-6">
-                    {services.map((service) => <div
-                        key={service._id} >
-                        <div className="border-[#2C485F] border-[2px] w-fit p-3 rounded-lg bg-white">
-                            <img className="w-80 h-48 object-cover" src={service.image} alt="" />
-                            <p className="font-bold text-xl">{service.title}</p>
-                            <p className="text-gray-500 border-[2px] py-1 px-2 rounded-full w-fit text-sm">{service.category}</p>
-                            <p className="w-80">{service.description}</p>
-                            <p>Pricing: {service.price}$</p>
-                            <Link to={`/services/${service._id}`} ><button className="bg-[#2C485F] text-white rounded-lg p-2">See Details</button></Link>
+                <div className="grid-cols-1 gap-6 grid lg:grid-cols-3 md:grid-cols-2 py-6 lg:w-fit w-[90%]">
+                    {services.map((service) => (
+                        <div key={service._id}>
+                            <div className="border-[1px] p-3 rounded-lg drop-shadow-md bg-white ">
+                                <div className="overflow-hidden">
+                                    <img src={service.image} alt="" className="w-[420px] h-[240px] rounded-md object-cover transition duration-300 hover:scale-110" />
+                                </div>
+                                
+                                <div className="p-2 rounded-b-lg">
+                                    <p className="text-xl font-medium hover:text-[#2C485F] cursor-pointer">{service.title}</p>
+                                    <p className="text-lg mt-1">{service.description}</p>
+                                    <div className="flex items-center justify-between pt-2">
+                                        <p className="">Pricing: {service.price}$</p>
+                                        <Link to={`/services/${service._id}`} ><button className="text-[#2C485F] bg-[rgba(44,72,95,0.2)] hover:text-white hover:bg-[#2C485F] rounded-md p-2 transition duration-300">Details</button></Link>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
                         </div>
-                    </div>)}
+                    ))}
                 </div>
             </div>
 
