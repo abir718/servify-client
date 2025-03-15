@@ -115,7 +115,7 @@ const Myreviews = () => {
 
 
     return (
-        <div className="py-10">
+        <div className="h-screen">
             <Helmet><title>My Reviews | Servify</title></Helmet>
             <h1 className="font-bold text-3xl mx-auto ml-20 py-6">My Reviews</h1>
             {review

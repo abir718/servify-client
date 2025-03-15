@@ -3,24 +3,24 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <div>
-            <div className="bg-base-200">
+            <div className="bg-[#eaf5ff]">
                 <div className="flex flex-col items-center justify-center gap-2 pt-10">
                     <img className="w-20" src="/images/survify.png" alt="" />
                     <p className="text-[#2C485F] text-lg font-medium text-center">Empowering businesses and individuals with trusted reviews and insights to build better connections – Servify, your partner in reliability.</p>
                 </div>
         
                 <footer className="footer lg:w-[80%] mx-auto text-base-content text-lg p-10 flex flex-col sm:flex-row sm:items-start items-center justify-between gap-6">
-                    <nav className="flex flex-col items-center sm:items-start">
+                    <nav className="flex flex-col text-center justify-center md:items-center items-start">
                         <h6 className="font-bold text-xl text-[#2C485F]  mb-4 sm:mb-2">Services</h6>
-                        <a className="link link-hover text-gray-400 mb-2"><Link to={`/services`}>All Services</Link></a>
+                        <Link className="link link-hover text-gray-400 mb-2" to={`/services`}>All Services</Link>
                         <a href="https://www.trustpilot.com/" className="link link-hover text-gray-400 mb-2">Inspiration</a>
                     </nav>
 
-                    <nav className="flex flex-col items-center sm:items-start">
+                    <div className="flex flex-col text-center justify-center md:items-center items-start">
                         <h6 className="font-bold text-xl text-[#2C485F]  mb-4 sm:mb-2">Company</h6>
-                        <a className="link link-hover text-gray-400 mb-2"><Link to={`/addservice`}>Post</Link></a>
+                        <Link className="link link-hover text-gray-400 mb-2" to={`/addservice`}>Post</Link>
                         <a href="https://www.facebook.com/yuta.553/" className="link link-hover text-gray-400 mb-2">Contact</a>
-                    </nav>
+                    </div>
 
                     <nav className="flex flex-col items-center sm:items-start">
                         <h6 className="font-bold text-xl text-[#2C485F]  mb-4 sm:mb-2">Social</h6>
@@ -60,7 +60,7 @@ const Footer = () => {
                     
                 </footer>
                 <div className="w-[100%] flex flex-col items-center mt-8">
-                <hr className="w-[100%] text-black" />
+                <hr className="w-full border-t border-[#3e698b]" />
                 <p className="text-gray-400 mt-6 mb-8">@Servify All Rights Reserved.</p>
             </div>
             </div>

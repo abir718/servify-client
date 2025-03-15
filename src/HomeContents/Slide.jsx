@@ -7,11 +7,14 @@ export default function Slide() {
     return (
         <>
             <div className='w-[80%] mx-auto mt-4'>
-                <Swiper navigation={true} modules={[Navigation]} loop={true} className="mySwiper">
-                    <SwiperSlide><img className="object-fill" src="/images/res.png" alt="" /></SwiperSlide>
-                    <SwiperSlide><img className="object-fill" src="/images/hotel.png" alt="" /></SwiperSlide>
-                    <SwiperSlide><img className="object-fill" src="/images/medical.png" alt="" /></SwiperSlide>
-                </Swiper>
+
+                <div className=''>
+                    <Swiper navigation={true} modules={[Navigation]} loop={true} className="mySwiper h-[700px]">
+                        <SwiperSlide><img className=" " src="/images/res.png" alt="" /></SwiperSlide>
+                        <SwiperSlide><img className="" src="/images/hotel.png" alt="" /></SwiperSlide>
+                        <SwiperSlide><img className="" src="/images/medical.png" alt="" /></SwiperSlide>
+                    </Swiper>
+                </div>
             </div>
 
         </>
