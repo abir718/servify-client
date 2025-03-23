@@ -65,8 +65,8 @@ const Others = () => {
                     </div>
                 </div>
             </div>
-            <div className="border-2">
-                <div className="w-[80%] mx-auto bg-[#FFDEBF] my-10 p-10 rounded-lg lg:flex items-center justify-around">
+            <div className="bg-white py-10">
+                <div className="w-[80%] mx-auto bg-[#FFDEBF]  p-10 rounded-lg lg:flex items-center justify-around">
                     <div className="flex flex-col gap-6">
                         <h1 className="text-3xl font-bold ">Help millions make the right choice</h1>
                         <p className="font-medium">Share your reviews on servify , where reviews make a difference.</p>
