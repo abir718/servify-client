@@ -28,7 +28,7 @@ const Header = () => {
                 </div>
 
                 <div className="hidden sm:block">
-                    <img className="w-14" src="/images/survify.png" alt="" />
+                    <img className="w-14 cursor-pointer" onClick={() => window.location.reload()}  src="/images/survify.png" alt="" />
                 </div>
 
                 <div
@@ -176,22 +176,24 @@ const Header = () => {
                                 title={user.displayName}
                                 alt="User Icon"
                             />
-                            <button
-                                className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition-transform duration-500"
+                            <motion.button
+                                className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition-all duration-300"
                                 onClick={logOut}
+                                whileHover={{ borderRadius: "999px" }}
                             >
                                 Log-out
-                            </button>
+                            </motion.button>
+
                         </>
                     ) : (
                         <div className="flex gap-3">
                             <NavLink to="/login">
-                                <button className="font-medium border-[2px] border-[#2C485F] bg-[#2C485F] text-white px-3 py-2 rounded-lg hover:rounded-full transition-transform duration-500">
+                                <button className="font-medium border-[2px] border-[#2C485F] bg-[#2C485F] text-white px-3 py-2 rounded-lg hover:rounded-full transition duration-500">
                                     Login
                                 </button>
                             </NavLink>
                             <NavLink to="/register">
-                                <button className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition-transform duration-500">
+                                <button className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition duration-500">
                                     Register
                                 </button>
                             </NavLink>

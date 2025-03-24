@@ -3,7 +3,7 @@ import Header from "./HomeContents/Header";
 import Footer from "./HomeContents/Footer";
 import { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet";
-import CustomScrollbar from "./CustomScrollbar";
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 const Home = () => {
   return (
@@ -13,17 +13,17 @@ const Home = () => {
       </Helmet>
       <Toaster />
 
-      <div className="flex-1 overflow-hidden">
-        <CustomScrollbar>
-        <Header />
-            <Outlet />
-            <Footer />
-        </CustomScrollbar>
-      </div>
+      <Scrollbars
 
+      >
+              <Header />
+        <Outlet />
+              <Footer />
+      </Scrollbars>
 
     </div>
   );
 };
 
 export default Home;
+
