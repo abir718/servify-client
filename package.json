@@ -27,7 +27,8 @@
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.15.10",
-    "swiper": "^11.2.5"
+    "swiper": "^11.2.5",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
