@@ -1,7 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import Featured from "./Featured";
 import Others from "./Others";
-import Slide from "./Slide";
+import Banner from "./Banner";
+import Partners from "./Partners";
 
 
 const Homecontent = () => {
@@ -10,8 +11,9 @@ const Homecontent = () => {
 
     return (
         <div>
-            <Slide></Slide>
+            <Banner></Banner>
             <Featured loadServices={loadServices}></Featured>
+            <Partners></Partners>
             <Others></Others>
         </div>
     );
