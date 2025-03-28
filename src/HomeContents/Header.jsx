@@ -28,7 +28,7 @@ const Header = () => {
                 </div>
 
                 <div className="hidden sm:block">
-                    <img className="w-14 cursor-pointer" onClick={() => window.location.reload()}  src="/images/survify.png" alt="" />
+                    <img className="w-12 cursor-pointer" onClick={() => window.location.reload()}  src="/images/survify.png" alt="" />
                 </div>
 
                 <div
