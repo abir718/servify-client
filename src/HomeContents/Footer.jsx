@@ -6,20 +6,20 @@ import { FaYoutube } from "react-icons/fa";
 const Footer = () => {
     return (
         <div>
-            <div className="bg-[#eff7ff]">
+            <div className="bg-gray-100">
                 <div className="flex flex-col items-center justify-center gap-2 pt-10">
                     <img className="w-20" src="/images/survify.png" alt="" />
                     <p className="text-[#2C485F] text-lg font-medium text-center">Empowering businesses and individuals with trusted reviews and insights to build better connections – Servify, your partner in reliability.</p>
                 </div>
 
-                <footer className="footer lg:w-[80%] mx-auto text-base-content text-lg p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-                    <nav className="flex flex-col text-center justify-center md:items-center items-start">
+                <footer className="footer lg:w-[80%] mx-auto text-base-content text-lg p-10 flex flex-col sm:flex-row  items-center justify-between gap-6">
+                    <nav className="flex flex-col text-center justify-center items-center">
                         <h6 className="font-bold text-xl text-[#2C485F]  mb-4 sm:mb-2">Services</h6>
                         <Link className="hover:text-[#2C485F] transition duration-300 text-gray-400 mb-2" to={`/services`}>All Services</Link>
                         <a href="https://www.trustpilot.com/" className="hover:text-[#2C485F] transition duration-300 text-gray-400 mb-2">Inspiration</a>
                     </nav>
 
-                    <div className="flex flex-col text-center justify-center md:items-center items-start">
+                    <div className="flex flex-col text-center justify-center items-center">
                         <h6 className="font-bold text-xl text-[#2C485F]  mb-4 sm:mb-2">Company</h6>
                         <Link className="hover:text-[#2C485F] transition duration-300 text-gray-400 mb-2" to={`/addservice`}>Post</Link>
                         <a href="https://www.facebook.com/yuta.553/" className="hover:text-[#2C485F] transition duration-300 text-gray-400 mb-2">Contact</a>
