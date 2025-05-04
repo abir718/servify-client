@@ -19,12 +19,12 @@ const Banner = () => {
                         </div>
                     </div>
                     <p className="text-gray-500 lg:text-2xl py-2">Connect with Sevify and unlock the perfect service tailored just for you</p>
-                    <div className="flex items-center justify-between text-[#2C485F] py-2">
+                    <div className="grid grid-cols-3 text-[#2C485F] py-2">
                         <div className="flex flex-col gap-3 items-center text-center lg:text-left lg:flex-row">
                             <IoIosStarOutline className="lg:size-14 size-8" />
                             <div>
                                 <p className="text-2xl font-bold">300k+</p>
-                                <p className="text-gray-500 text-xl">Reviews Intotal</p>
+                                <p className="text-gray-500 lg:text-xl text-lg">Reviews Intotal</p>
                             </div>
 
                         </div>
@@ -32,15 +32,15 @@ const Banner = () => {
                             <AiOutlineRise className="lg:size-14 size-8" />
                             <div>
                                 <p className="text-2xl font-bold">20k+</p>
-                                <p className="text-gray-500 text-xl">Verified Services</p>
+                                <p className="text-gray-500 lg:text-xl text-lg">Verified Services</p>
                             </div>
 
                         </div>
                         <div className="flex flex-col gap-3 items-center text-center lg:text-left lg:flex-row">
-                            <FaUser className="lg:size-12 size-6" />
+                            <FaUser className="lg:size-12 size-8" />
                             <div>
                                 <p className="text-2xl font-bold">200k+</p>
-                                <p className="text-gray-500 text-xl">Verified Users</p>
+                                <p className="text-gray-500 lg:text-xl text-lg">Verified Users</p>
                             </div>
 
                         </div>

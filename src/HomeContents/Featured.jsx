@@ -11,7 +11,7 @@ const Featured = ({ loadServices }) => {
                     {loadServices.slice(0, 5).map((service) => (
                         <div key={service._id}>
                             <div className="border-[1px] p-2 rounded-lg drop-shadow-md bg-white">
-                                <div className="relative overflow-hidden w-72 h-44">
+                                <div className="relative overflow-hidden w-80 h-44">
                                     <p className="absolute top-2 right-2 text-[#2C485F] bg-white px-2 py-1 rounded-md z-10">{service.category}</p>
                                     <div className="">
                                         <img src={service.image} alt="" className=" w-full h-full rounded-md object-cover transition duration-300 hover:scale-110"/>
