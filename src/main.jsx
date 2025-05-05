@@ -41,7 +41,12 @@ const router = createBrowserRouter([
         loader: () => fetch('https://servify-server.vercel.app/services')
       },
       {
-        path: '/services/:id',
+        path: '/services/:category',
+        element: <Services/>,
+        loader: () => fetch('https://servify-server.vercel.app/services')
+      },
+      {
+        path: '/service-details/:id',
         element: <Details/>,
         loader: async ({ params }) => {
           const service = await fetch(`https://servify-server.vercel.app/services/${params.id}`);

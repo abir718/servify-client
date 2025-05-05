@@ -54,7 +54,7 @@ const Header = () => {
                                 )}
                             </NavLink>
 
-                            <NavLink to="/services" className="relative font-medium text-gray-400">
+                            <NavLink to="/services/all" className="relative font-medium text-gray-400">
                                 {({ isActive }) => (
                                     <>
                                         <span className={isActive ? "text-[#2C485F]" : ""}>Services</span>

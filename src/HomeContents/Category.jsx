@@ -1,9 +1,9 @@
 
 function Category() {
     return (
-        <div className="mt-10">
+        <div className="my-10">
             <h1 className='text-[#2C485F] text-4xl font-bold text-center'>Browse By Category</h1>
-            <p className="text-xl text-gray-500 text-center pt-2  pb-4">Pick your desired service by browsing through cateogories</p>
+            <p className="text-xl text-gray-500 text-center pt-2  pb-4">Pick your desired service by browsing through categories</p>
             <div className="grid-cols-6 grid gap-y-6 w-[90%] mx-auto">
                 <div className="border-2 border-[#2c485f2c] p-4 rounded-lg w-fit hover:bg-[#2c485f0e] hover:border-[#2c485f6c] cursor-pointer transition duration-300">
                     <img className="h-44 w-56 object-contain" src="/images/mechanic.svg" alt="Mechanic" />
@@ -35,7 +35,7 @@ function Category() {
                 </div>
                 <div className="border-2 border-[#2c485f2c] p-4 rounded-lg w-fit hover:bg-[#2c485f0e] hover:border-[#2c485f6c] cursor-pointer transition duration-300">
                     <img className="h-44 w-56 object-contain" src="/images/events.svg" alt="Events" />
-                    <p className="text-center text-xl mt-6">Party & Events</p>
+                    <p className="text-center text-xl mt-6">Events & Parties</p>
                 </div>
                 <div className="border-2 border-[#2c485f2c] p-4 rounded-lg w-fit hover:bg-[#2c485f0e] hover:border-[#2c485f6c] cursor-pointer transition duration-300">
                     <img className="h-44 w-56 object-contain" src="/images/finance.svg" alt="Finance" />
