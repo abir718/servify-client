@@ -48,7 +48,7 @@ const Services = () => {
                 <div className="grid-cols-1 gap-6 grid lg:grid-cols-4 md:grid-cols-2 py-6">
                     {filteredServices.map((service) => (
                         <div key={service._id}>
-                            <div className="border-[1px] p-3 rounded-lg drop-shadow-md bg-white w-fit">
+                            <div className="border-[1px] border-gray-200 p-3 rounded-lg shadow-md bg-white w-fit">
                                 <div className="relative ">
                                     <img src={service.image} alt="" className="w-[340px] h-[200px] rounded-md object-cover" />
                                     <p className="absolute top-2 left-2 bg-white p-1 px-2 rounded-lg  font-medium">{service.category}</p>

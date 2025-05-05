@@ -14,6 +14,8 @@ import Auth from './Authprovider';
 import Homecontent from './HomeContents/Homecontent.jsx';
 import Details from './Components/Details.jsx';
 import Error from './Error.jsx';
+import Dashboard from './Dashboard/Dashboard.jsx';
+import Dashtext from './Dashboard/Dashtext.jsx';
 
 
 const router = createBrowserRouter([
@@ -59,21 +61,39 @@ const router = createBrowserRouter([
           return { loadService, loadReviews , loadServices };
         },
       },
+     
+
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
       {
-        path: '/addservice',
+        path: '/dashboard',
+        element: <Dashtext />,
+        loader: async () => {
+          const reviews = await fetch(`https://servify-server.vercel.app/reviews`);
+          const services = await fetch(`https://servify-server.vercel.app/services`);
+          const loadReviews = await reviews.json(); 
+          const loadServices = await services.json(); 
+          return { loadReviews , loadServices };
+        }
+      },
+      {
+        path: 'addservice',
         element:<Hidden><Addservice/></Hidden>,
       },
       {
-        path: '/myreviews',
+        path: 'myreviews',
         element:<Hidden><Myreviews/></Hidden>,
         loader: () => fetch(`https://servify-server.vercel.app/reviews`)
       },
       {
-        path: '/myservices',
+        path: 'myservices',
         element:<Hidden><Myservices/></Hidden>,
         loader: () => fetch('https://servify-server.vercel.app/services')
       },
-      
 
     ],
   },

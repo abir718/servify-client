@@ -115,13 +115,13 @@ const Myreviews = () => {
 
 
     return (
-        <div className="min-h-[400px]">
+        <div className="h-screen">
             <Helmet><title>My Reviews | Servify</title></Helmet>
-            <h1 className="font-bold text-3xl mx-auto ml-20 py-6">My Reviews</h1>
+            <h1 className="font-bold text-3xl mx-auto py-3 lg:mt-10 mt-20 w-[90%] ">My Reviews</h1>
             {review
                 .map((review) => (
-                    <div key={review._id}>
-                        <div className="border-[0.2px] border-gray-200 shadow-md rounded-lg p-3 m-3 flex justify-between">
+                    <div className="w-[90%] mx-auto" key={review._id}>
+                        <div className="border-[0.2px] border-gray-200 shadow-md rounded-lg p-3 m-3 lg:flex justify-between">
                             <div>
                                 <div className="flex justify-between">
                                     <div className="flex items-center gap-2">

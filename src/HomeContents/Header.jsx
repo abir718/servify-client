@@ -1,14 +1,11 @@
 import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../Authprovider";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const { user, logOut } = useContext(authContext);
-
-    const activeClass = "text-[#052843] border-b-2 border-[#052843] pb-[2px]";
-    const baseClass = "font-medium text-gray-400";
 
     return (
         <div className="bg-white py-1 drop-shadow-lg sticky top-0 z-50">
@@ -54,7 +51,7 @@ const Header = () => {
                             <div className="dropdown dropdown-end">
                                 <div tabIndex={0} role="button"><img className="w-10" src={user.photoURL} title={user.displayName} alt="User Icon" /></div>
                                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                                    <li><a>Dashboard</a></li>
+                                    <li><Link to="/dashboard">Dashboard</Link></li>
                                     <li><button onClick={logOut}>Log-out</button></li>
                                 </ul>
                             </div>

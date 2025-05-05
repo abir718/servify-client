@@ -116,7 +116,7 @@ const Addservice = () => {
     return (
         <div>
             <Helmet><title>Add Service | Servify</title></Helmet>
-            <div className="hero bg-base-200">
+            <div className="hero bg-base-200 pt-10">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl my-10">
                     <form className="card-body" onSubmit={handleSubmit}>
                         <div className="form-control">

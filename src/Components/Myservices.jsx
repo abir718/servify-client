@@ -187,7 +187,7 @@ const Myservices = () => {
   };
 
   return (
-    <div className="bg-base-200 min-h-[400px]">
+    <div className=" h-screen">
       <Helmet><title>My Services | Servify</title></Helmet>
 
       <div className="mx-auto w-[80%]">
@@ -204,7 +204,7 @@ const Myservices = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-6">
           {service.map((ser) => (
-            <div key={ser._id} className="border shadow p-3 rounded-lg bg-white">
+            <div key={ser._id} className="border-[1px] border-gray-200 p-3 rounded-lg shadow-md bg-whitee">
               <div className="relative">
                 <img src={ser.image} alt="" className="w-full h-[200px] rounded-md object-cover" />
                 <p className="absolute top-2 left-2 bg-white px-2 py-1 rounded text-sm font-medium">
