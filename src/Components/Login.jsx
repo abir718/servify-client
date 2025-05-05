@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const Login = () => {
 
     const navigate = useNavigate()
-    let {login , setUser , signInWithGoogle} = useContext(authContext)
+    let {login , setUser} = useContext(authContext)
     let location = useLocation()
 
     let handleSubmit = (e) => {
@@ -27,20 +27,8 @@ const Login = () => {
                 : "Something went wrong. Please try again.";         
             toast.error(errorText);
           });
-          
+         
     }
-
-    const signIn = () => {
-        signInWithGoogle()
-          .then((result) => {
-            const user = result.user;
-            toast.success('Registration successful');
-            navigate("/");
-          })
-          .catch((error) => {
-            console.error("Error during sign-in:", error.message);
-          });
-      };
 
     return (
         <div>
@@ -65,13 +53,10 @@ const Login = () => {
                         </div>
                 
                         <div className="form-control">
-                            <button className="py-3 rounded-lg hover:scale-105 transition duration-300 bg-[#2C485F] border-[#2C485F] border-[2px] text-white">Login</button>
+                            <button className="py-3 rounded-lg bg-[#2C485F] border-[#2C485F] border-[2px] text-white">Login</button>
                         </div>
 
                     </form>
-                    <div className="form-control px-8">
-                            <button onClick={signIn} className=" py-3 rounded-lg hover:scale-105 transition duration-300 text-[#2C485F] border-[#2C485F] border-[2px]">Continue With Google</button>
-                        </div>
 
                     <p className="pl-4 pb-2">Dont have an Account? <span className="underline"><NavLink to='/register'>Register</NavLink></span></p>
                 </div>

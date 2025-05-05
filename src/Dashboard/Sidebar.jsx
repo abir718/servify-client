@@ -8,7 +8,23 @@ import { authContext } from "../Authprovider";
 const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user } = useContext(authContext);
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (user?.email) {
+            fetch("https://servify-server.vercel.app/check-admin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ email: user.email }),
+            })
+                .then((res) => res.json())
+                .then((data) => setIsAdmin(data.isAdmin))
+        }
+    }, [user]);
 
 
 
@@ -32,13 +48,13 @@ const Sidebar = () => {
                     <NavLink to="/dashboard" end className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>User Profile</NavLink>
                     <NavLink to="addservice" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>Add Service</NavLink> 
                     <NavLink to="myservices" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>My Added Services</NavLink>
-                    <NavLink to="/bookinglogs" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>Booking Logs</NavLink>
+                    <NavLink to="bookinglogs" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>Booking Logs</NavLink>
                     <NavLink to="myreviews" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>My Reviews</NavLink>
                     {isAdmin && (
                         <>
                             <hr />
                             <p className="p-2 text-[#0A303A]">Admin Routes</p>
-                            <NavLink to="admin-allusers" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>All Users</NavLink>  
+                            <NavLink to="admin-alluser" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>All Users</NavLink>  
                             <NavLink to="admin-allservices" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>All Services</NavLink>
                         </>
                     )}

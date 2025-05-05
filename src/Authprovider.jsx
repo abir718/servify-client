@@ -29,13 +29,33 @@ const AuthProvider = ({children}) => {
     let authInfo = {user,setUser,newUser,logOut,login,loader,changeProfile}
 
 
-    useEffect(()=> {
-        let remove = onAuthStateChanged(auth , currentUser=>{
+    useEffect(() => {
+        let remove = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
+            if (currentUser) {
+                const userInfo = { email: currentUser.email }
+                fetch("https://servify-server.vercel.app/jwt", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(userInfo),
+                })
+                .then((res) => res.json()) 
+                .then((data) => {
+                    if (data.token) {
+                        localStorage.setItem("token", data.token);
+                        }
+                    })
+
+            }
+            else{
+                localStorage.removeItem('token')
+            }
             setLoader(false)
         })
-        return ()=> {remove()} 
-    } , [])
+        return () => { remove() }
+    }, [])
 
     return (
         <authContext.Provider value={authInfo}>{children}</authContext.Provider>

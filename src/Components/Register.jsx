@@ -41,8 +41,21 @@ const Register = () => {
         newUser(email, password)
             .then((result) => {
                 const user = result.user;
+                const userData = {
+                    email: user.email,
+                    displayName: name,
+                    photoURL: photo,
+                    role: "user",
+                };
                 changeProfile({ displayName: name, photoURL: photo }).then(() => {
                     setUser(user);
+                    fetch("https://servify-server.vercel.app/users", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(userData),
+                    })
                     toast.success('Registration successful');
                     navigate("/");
                 });
@@ -82,7 +95,7 @@ const Register = () => {
                             <input type="password" placeholder="password" name="password" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
-                            <button className=" py-3 rounded-lg hover:scale-105 transition duration-300 bg-[#2C485F] text-white">Sign Up</button>
+                            <button className=" py-3 rounded-lg bg-[#2C485F] text-white">Sign Up</button>
                         </div>
                     </form>
                     <p className="pl-4 pb-2">Already have an Account? <span className="underline"><NavLink to='/login'>Login</NavLink></span></p>
