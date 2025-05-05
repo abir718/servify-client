@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { authContext } from "../Authprovider";
 import Rating from '@mui/material/Rating';
 import { FaTrash, FaPen } from "react-icons/fa";
@@ -115,28 +115,26 @@ const Myreviews = () => {
 
 
     return (
-        <div className="h-screen">
+        <div className="min-h-[400px]">
             <Helmet><title>My Reviews | Servify</title></Helmet>
             <h1 className="font-bold text-3xl mx-auto ml-20 py-6">My Reviews</h1>
             {review
                 .map((review) => (
                     <div key={review._id}>
-                        <div className="border-[2px] border-gray-400 rounded-lg p-3 m-3 bg-white w-[80%] mx-auto md:flex justify-between">
+                        <div className="border-[0.2px] border-gray-200 shadow-md rounded-lg p-3 m-3 flex justify-between">
                             <div>
                                 <div className="flex justify-between">
                                     <div className="flex items-center gap-2">
                                         <p className="font-bold">{review.serviceTitle}</p>
                                         <Rating name="rating" value={review.rating} size="medium" readOnly />
                                     </div>
-                                    <div>
-
-                                    </div>
                                 </div>
                                 <p className="mt-2">{review.review}</p>
                             </div>
                             <div className="flex items-center gap-3">
-                                <button><FaPen onClick={() => handleEdit(review)} size="32" className="text-white bg-[#2C485F] p-2 rounded-lg" /></button>
-                                <button><FaTrash onClick={() => removeReview(review._id)} size="32" className="text-white bg-[#2C485F] p-2 rounded-lg" /></button>
+                                <Link to={`/service-details/${review.serviceId}`} className="text-white bg-[#2C485F] p-2 rounded-lg">View Service</Link>
+                                <button><FaPen onClick={() => handleEdit(review)} className="text-white bg-[#2C485F] p-3 rounded-lg size-10" /></button>
+                                <button><FaTrash onClick={() => removeReview(review._id)} className="text-white bg-[#2C485F] p-3 rounded-lg size-10" /></button>
 
                             </div>
 

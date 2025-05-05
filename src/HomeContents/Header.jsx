@@ -1,208 +1,81 @@
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { authContext } from "../Authprovider";
-import { motion } from "framer-motion";
-import { RxCross2 } from "react-icons/rx";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
+
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-
-    const underlineVariants = {
-        hidden: { width: 0 },
-        visible: { width: "100%" },
-    };
-
     const { user, logOut } = useContext(authContext);
 
+    const activeClass = "text-[#052843] border-b-2 border-[#052843] pb-[2px]";
+    const baseClass = "font-medium text-gray-400";
+
     return (
-        <div className=" bg-white py-1 drop-shadow-lg sticky top-0 z-50">
-            <div className="mx-auto w-[90%]  flex items-center justify-between">
+        <div className="bg-white py-1 drop-shadow-lg sticky top-0 z-50">
+            <div className="mx-auto w-[90%] flex items-center justify-between">
                 <div className="sm:hidden">
-                    <button onClick={() => setMenuOpen(!menuOpen)} className="text-gray-600">
-                        {menuOpen ? (
-                            <span className="text-xl"><RxCross2 /></span>
-                        ) : (
-                            <span className="text-xl"><RxHamburgerMenu /></span>
-                        )}
+                    <button onClick={() => setMenuOpen(!menuOpen)} className="text-gray-600 text-xl">
+                        {menuOpen ? <RxCross2 /> : <RxHamburgerMenu />}
                     </button>
                 </div>
 
                 <div className="hidden sm:block">
-                    <img className="w-12 cursor-pointer" onClick={() => window.location.reload()}  src="/images/survify.png" alt="" />
+                    <img
+                        className="w-12 cursor-pointer"
+                        onClick={() => window.location.reload()}
+                        src="/images/survify.png"
+                        alt=""
+                    />
                 </div>
 
                 <div
-                    className={`absolute sm:static top-16  bg-white sm:bg-transparent shadow-lg sm:shadow-none rounded-lg p-4 sm:p-0 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center transition-transform duration-300 ${menuOpen ? "block" : "hidden sm:flex"}`}
+                    className={`absolute sm:static top-16 bg-white sm:bg-transparent shadow-lg sm:shadow-none rounded-lg p-4 sm:p-0 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center transition-transform duration-300 ${menuOpen ? "block" : "hidden sm:flex"}`}
                 >
-                    {user && user.email ? (
+                    {user?.email ? (
                         <>
-                            <NavLink to="/" className="relative font-medium text-gray-400">
-                                {({ isActive }) => (
-                                    <>
-                                        <span className={isActive ? "text-[#2C485F]" : ""}>Home</span>
-                                        {isActive && (
-                                            <motion.div
-                                                className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
-                                                initial="hidden"
-                                                animate="visible"
-                                                exit="hidden"
-                                                variants={underlineVariants}
-                                                transition={{ duration: 0.3 }}
-                                            />
-                                        )}
-                                    </>
-                                )}
-                            </NavLink>
-
-                            <NavLink to="/services/all" className="relative font-medium text-gray-400">
-                                {({ isActive }) => (
-                                    <>
-                                        <span className={isActive ? "text-[#2C485F]" : ""}>Services</span>
-                                        {isActive && (
-                                            <motion.div
-                                                className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
-                                                initial="hidden"
-                                                animate="visible"
-                                                exit="hidden"
-                                                variants={underlineVariants}
-                                                transition={{ duration: 0.3 }}
-                                            />
-                                        )}
-                                    </>
-                                )}
-                            </NavLink>
-
-                            <NavLink to="/addservice" className="relative font-medium text-gray-400">
-                                {({ isActive }) => (
-                                    <>
-                                        <span className={isActive ? "text-[#2C485F]" : ""}>Add Service</span>
-                                        {isActive && (
-                                            <motion.div
-                                                className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
-                                                initial="hidden"
-                                                animate="visible"
-                                                exit="hidden"
-                                                variants={underlineVariants}
-                                                transition={{ duration: 0.3 }}
-                                            />
-                                        )}
-                                    </>
-                                )}
-                            </NavLink>
-
-                            <NavLink to="/myreviews" className="relative font-medium text-gray-400">
-                                {({ isActive }) => (
-                                    <>
-                                        <span className={isActive ? "text-[#2C485F]" : ""}>My Reviews</span>
-                                        {isActive && (
-                                            <motion.div
-                                                className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
-                                                initial="hidden"
-                                                animate="visible"
-                                                exit="hidden"
-                                                variants={underlineVariants}
-                                                transition={{ duration: 0.3 }}
-                                            />
-                                        )}
-                                    </>
-                                )}
-                            </NavLink>
-
-                            <NavLink to="/myservices" className="relative font-medium text-gray-400">
-                                {({ isActive }) => (
-                                    <>
-                                        <span className={isActive ? "text-[#2C485F]" : ""}>My Services</span>
-                                        {isActive && (
-                                            <motion.div
-                                                className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
-                                                initial="hidden"
-                                                animate="visible"
-                                                exit="hidden"
-                                                variants={underlineVariants}
-                                                transition={{ duration: 0.3 }}
-                                            />
-                                        )}
-                                    </>
-                                )}
-                            </NavLink>
+                            <NavLink to="/" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Home</NavLink>
+                            <NavLink to="/services/all" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Services</NavLink>
+                            <NavLink to="/addservice" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Add Service</NavLink>
+                            <NavLink to="/myreviews" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>My Reviews</NavLink>
+                            <NavLink to="/myservices" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>My Services</NavLink>
                         </>
                     ) : (
                         <>
-                            <NavLink to="/" className="relative font-medium text-gray-400">
-                                {({ isActive }) => (
-                                    <>
-                                        <span className={isActive ? "text-[#2C485F]" : ""}>Home</span>
-                                        {isActive && (
-                                            <motion.div
-                                                className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
-                                                initial="hidden"
-                                                animate="visible"
-                                                exit="hidden"
-                                                variants={underlineVariants}
-                                                transition={{ duration: 0.3 }}
-                                            />
-                                        )}
-                                    </>
-                                )}
-                            </NavLink>
-
-                            <NavLink to="/services" className="relative font-medium text-gray-400">
-                                {({ isActive }) => (
-                                    <>
-                                        <span className={isActive ? "text-[#2C485F]" : ""}>Services</span>
-                                        {isActive && (
-                                            <motion.div
-                                                className="absolute bottom-[-2px] left-0 h-[2px] bg-[#2C485F]"
-                                                initial="hidden"
-                                                animate="visible"
-                                                exit="hidden"
-                                                variants={underlineVariants}
-                                                transition={{ duration: 0.3 }}
-                                            />
-                                        )}
-                                    </>
-                                )}
-                            </NavLink>
+                            <NavLink to="/" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Home</NavLink>
+                            <NavLink to="/services" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Services</NavLink>
                         </>
                     )}
                 </div>
 
                 <div className="flex items-center gap-3">
-                    {user && user.email ? (
+                    {user?.email ? (
                         <>
-                            <img
-                                className="w-10"
-                                src={user.photoURL}
-                                title={user.displayName}
-                                alt="User Icon"
-                            />
-                            <motion.button
-                                className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition-all duration-300"
-                                onClick={logOut}
-                                whileHover={{ borderRadius: "999px" }}
-                            >
-                                Log-out
-                            </motion.button>
+
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button"><img className="w-10" src={user.photoURL} title={user.displayName} alt="User Icon" /></div>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                    <li><a>Dashboard</a></li>
+                                    <li><button onClick={logOut}>Log-out</button></li>
+                                </ul>
+                            </div>
 
                         </>
                     ) : (
                         <div className="flex gap-3">
                             <NavLink to="/login">
-                                <button className="font-medium border-[2px] border-[#2C485F] bg-[#2C485F] text-white px-3 py-2 rounded-lg hover:rounded-full transition duration-500">
+                                <button className="font-medium border-[2px] border-[#052843] bg-[#052843] text-white px-3 py-2 rounded-lg">
                                     Login
                                 </button>
                             </NavLink>
                             <NavLink to="/register">
-                                <button className="font-medium border-[2px] border-[#2C485F] text-[#2C485F] px-3 py-2 rounded-lg hover:rounded-full transition duration-500">
+                                <button className="font-medium border-[2px] border-[#052843] text-[#052843] px-3 py-2 rounded-lg">
                                     Register
                                 </button>
                             </NavLink>
                         </div>
-
                     )}
                 </div>
             </div>
-
         </div>
     );
 };
