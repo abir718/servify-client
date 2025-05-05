@@ -26,6 +26,8 @@ const Addservice = () => {
 
     const { user } = useContext(authContext);
     const email = user?.email;
+    const icon = user?.photoURL;
+    const name = user?.displayName;
 
     const now = new Date();
     const timeser = `${now.getDate()}/${now.getMonth() + 1}`;
@@ -45,7 +47,7 @@ const Addservice = () => {
         const price = form.price.value;
         const location = form.location.value;
         const newService = { image, title, number, website, description, category, price, timeser , location }
-        const service = { email, ...newService }
+        const service = { email,name,icon, ...newService }
 
         const valid = validateForm(newService)
 
@@ -145,7 +147,8 @@ const Addservice = () => {
                                 value={input}
                                 onChange={handleChange}
                                 className="input input-bordered"
-                                placeholder="location"
+                                placeholder="location" 
+                                required
                             />
                             {suggestions.length > 0 && (
                                 <ul className="mt-2 border bg-white rounded shadow z-10 relative">

@@ -1,7 +1,6 @@
 
 import { useContext, useState } from "react";
-import { FaRegEyeSlash } from "react-icons/fa";
-import { IoEyeSharp}  from "react-icons/io5";
+
 import { NavLink, useNavigate } from "react-router-dom";
 import { authContext } from "../Authprovider";
 import toast from "react-hot-toast";
@@ -13,11 +12,6 @@ const Register = () => {
 
     let {newUser , setUser , changeProfile } = useContext(authContext)
     let [errorp , setError] = useState('')
-    let [btn , setBtn] = useState(true)
-
-    let btnState = () => {
-        setBtn(!btn)
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -85,11 +79,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type={btn ? "password" : ""} placeholder="password" name="password" className="input input-bordered" required />
-                            <button onClick={btnState} className="absolute top-12 left-72 mr-14 rounded-lg hover:bg-gray-200 p-2 ">
-                                {btn ? <FaRegEyeSlash></FaRegEyeSlash> : <IoEyeSharp></IoEyeSharp>}
-                                
-                            </button>
+                            <input type="password" placeholder="password" name="password" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
                             <button className=" py-3 rounded-lg hover:scale-105 transition duration-300 bg-[#2C485F] text-white">Sign Up</button>

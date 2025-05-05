@@ -4,6 +4,10 @@ import toast from "react-hot-toast";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { authContext } from "../Authprovider";
 import { Helmet } from "react-helmet";
+import { IoLocationOutline, IoMailOutline } from "react-icons/io5";
+import { IoIosLink } from "react-icons/io";
+import { FaRegHeart } from "react-icons/fa";
+import { MdOutlineLocalPhone } from "react-icons/md";
 
 const Details = () => {
     const { loadService, loadReviews, loadServices } = useLoaderData();
@@ -21,6 +25,8 @@ const Details = () => {
 
     const now = new Date();
     const timeser = `${now.getDate()}/${now.getMonth() + 1}`;
+
+    const route = loadService.category.toLowerCase().trim().replace(/\s+/g, "-")
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -85,85 +91,95 @@ const Details = () => {
     };
 
     return (
-        <div>
+        <div className="mx-auto md:w-[80%] gap-10 py-10 ">
             <Helmet>
                 <title>Details | Servify</title>
             </Helmet>
-            <div className="mx-auto md:w-[80%] gap-10 py-10 flex lg:flex-row flex-col justify-around">
-                <div>
-                    <div className="w-fit p-3 rounded-lg bg-white md:flex items-center gap-4">
-                        <div>
-                            <img className="w-96 h-60 object-cover" src={loadService.image} alt="" />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <p className="font-bold text-3xl text-[#2C485F]">{loadService.title}</p>
-                            <p className="text-gray-500 border-[2px] py-1 px-2 rounded-full w-fit">
-                                {loadService.category}
-                            </p>
-                            <p className="w-80">{loadService.description}</p>
-                            <p>Pricing: {loadService.price}$</p>
-                            <button
-                                className="bg-[#2C485F] rounded-lg p-2 w-fit text-white align-middle"
-                                onClick={() => setIsModalOpen(true)}
-                            >
-                                Add Review
-                            </button>
-                        </div>
-                    </div>
-                    <div className=" p-3 rounded-lg bg-white">
-                        <div className="flex items-center justify-between">
-                            <p className="font-bold text-2xl text-[#2C485F]">All Reviews</p>
-                            <p className="text-lg text-gray-600">{reviews.filter((review) => review.serviceId === loadService._id).length} reviews</p>
+            <div className="flex gap-2">
+                <div >
+                    <div className="bg-white shadow-xl p-6 rounded-lg border-gray-200 border-[0.1px]">
+                        <div className="flex items-center justify-between px-2">
+                            <p className="font-bold text-3xl text-[#052843]">{loadService.title}</p>
+                            <p className=" w-fit rounded-md text-white bg-[#052843] py-1 px-2">{loadService.category}</p>
                         </div>
 
-                        {reviews
-                            .filter((review) => review.serviceId === loadService._id)
-                            .map((review) => (
-                                <div key={review._id} className="border-[2px] border-gray-400 rounded-lg p-3 m-3">
+                        <div className="flex gap-6 items-center my-1.5">
+                            <div className="flex gap-1 items-center text-gray-500">
+                                <IoLocationOutline className="size-5" />
+                                <p className="text-lg ">{loadService.location}</p>
+                            </div>
+                            <div className="flex gap-1 items-center text-gray-500 hover:text-[#052843] transition duration-300 cursor-pointer">
+                                <IoIosLink className="size-5" />
+                                <Link to={loadService.website} className="text-lg ">Check Website</Link>
+                            </div>
+                            <div className="flex gap-1 items-center text-gray-500 hover:text-[#e654c1] transition duration-300 cursor-pointer">
+                                <FaRegHeart className="size-5" />
+                                <p>Add to Wishlist </p>
+                            </div>
+                        </div>
+                        <img className="" src={loadService.image} alt="" />
+                        <div>
+                            <h1 className="text-2xl font-medium text-[#052843] mt-4">Service Overview</h1>
+                            <p className="text-lg">{loadService.description}</p>
+                        </div>
+                    </div>
+                    <div className="bg-white shadow-xl p-6 rounded-lg border-gray-200 border-[0.1px] mt-2">
+                        <div className="flex items-center justify-between px-2">
+                            <h1 className="text-2xl font-medium text-[#052843] mt-4">Reviews ({reviews.filter((review) => review.serviceId === loadService._id).length})</h1>
+                            <button className="bg-[#052843] rounded-lg p-2 w-fit text-white align-middle" onClick={() => setIsModalOpen(true)}>Add a Review</button>
+                        </div>
+                        <div className="">
+                            {reviews.filter((review) => review.serviceId === loadService._id).map((review) => (
+                                <div key={review._id} className="border-[0.2px] border-gray-200 shadow-md rounded-lg p-3 m-3">
                                     <div className="flex justify-between">
                                         <div className="flex items-center gap-2">
                                             <img className="rounded-lg w-12" src={review.reviewerPic} alt="" />
                                             <div className="">
                                                 <p className="font-bold">{review.reviewerName}</p>
-                                                <Rating name="rating" value={review.rating} size="medium" readOnly />
+                                                <p className="text-gray-500" >Posted on {review.timeser}/25</p>
                                             </div>
-
-
                                         </div>
-                                        <p >{review.timeser}/25</p>
+                                        <Rating name="rating" value={review.rating} size="medium" readOnly />
                                     </div>
                                     <p className="mt-2">{review.review}</p>
-                                </div>
-                            ))}
-                    </div>
-                </div>
-
-                <div>
-                    <p className="font-bold text-3xl text-[#2C485F]">Recommended Services</p>
-                    <div className="flex flex-col items-center">
-                        <div>
-                            {loadServices.slice(0, 4).filter((ser) => ser._id !== loadService._id).map((ser) => (
-                                <div key={ser._id} className="hover:drop-shadow-md">
-                                    <div className="border-[1px] bg-white border-[#2C485F] w-[350px] md:w-[700px] md:flex gap-4 p-3 rounded-xl my-4 ">
-                                        <img className="w-fit md:w-64 rounded-lg" src={ser.image} alt="" />
-                                        <div>
-                                            <p className="text-lg font-medium">{ser.title}</p>
-                                            <p className="text-gray-500 border-[2px] py-1 px-2 rounded-full w-fit">
-                                                {loadService.category}
-                                            </p>
-                                            <p>Pricing: {ser.price}$</p>
-                                            <Link to={`/services/${ser._id}`} ><button className="text-white bg-[#2C485F] rounded-lg py-1 px-2">See Details</button></Link>
-                                        </div>
-
-                                    </div>
-
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
-
+                <div className="flex flex-col gap-4 bg-white shadow-xl p-6 rounded-lg border-gray-200 border-[0.1px] h-fit">
+                    <div className="bg-white shadow-md p-6 rounded-lg border-gray-200 border-[0.1px] w-[350px]">
+                        <p className="text-gray-500">Starts from</p>
+                        <h1 className="text-3xl font-bold">{loadService.price}$</h1>
+                        <button className="bg-[#052843] text-white text-lg w-full py-2 rounded-md mt-2">Book Service</button>
+                        <Link to={`/services/${route}`}><button className="border-[2px] border-gray-200 text-gray-700 text-lg w-full py-2 rounded-md mt-2 hover:bg-gray-200 transition duration-300">View Similar Services</button></Link>
+                    </div>
+                    <div className="bg-white shadow-md p-6 rounded-lg border-gray-200 border-[0.1px]">
+                        <h1 className="text-2xl font-medium text-[#052843]">Service Provider</h1>
+                        <div className="flex flex-col items-center justify-center bg-gray-100 p-3">
+                            <img className="w-20 rounded-full" src={loadService.icon} alt="" />
+                            <p className="text-xl font-medium">{loadService.name}</p>
+                        </div>
+                        <div className="flex justify-between mt-4">
+                            <p className="flex items-center gap-1"><IoLocationOutline /> Address</p>
+                            <p className="text-gray-500">{loadService.location}</p>
+                        </div>
+                        <div className="flex justify-between mt-2">
+                            <p className="flex items-center gap-1"><IoMailOutline /> Email</p>
+                            <p className="text-gray-500">{loadService.email}</p>
+                        </div >
+                        <div className="flex justify-between mt-2">
+                            <p className="flex items-center gap-1"><MdOutlineLocalPhone /> Phone</p>
+                            <p className="text-gray-500">{loadService.number}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
+
 
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -192,8 +208,8 @@ const Details = () => {
                             </div>
 
                             <div className="flex justify-between">
-                                <button className="mt-4 border-2 border-[#2C485F] rounded-lg text-white bg-[#2C485F] hover:bg-transparent hover:text-[#2C485F] transition duration-300 py-1 px-3">Post</button>
-                                <button className="mt-4 border-2 border-[#2C485F] rounded-lg  text-[#2C485F] py-1 px-3" onClick={() => setIsModalOpen(false)}>Close</button>
+                                <button className="mt-4 border-2 border-[#052843] rounded-lg text-white bg-[#052843] py-1 px-3">Post</button>
+                                <button className="mt-4 border-2 border-[#052843] rounded-lg  text-[#052843] py-1 px-3" onClick={() => setIsModalOpen(false)}>Close</button>
 
                             </div>
                         </form>
