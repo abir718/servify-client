@@ -36,7 +36,7 @@ const Sidebar = () => {
             </button>
 
             <div
-                className={`fixed md:relative top-0 left-0 w-64 bg-gray-50 p-4 h-screen transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed md:relative top-0 left-0 w-64 bg-gray-50 p-4 h-full transform ${isOpen ? "translate-x-0" : "-translate-x-full"
                     } md:translate-x-0 transition-transform duration-300 ease-in-out shadow-lg md:shadow-none z-40`}
             >
                 <button className="md:hidden absolute top-4 right-4 p-2 bg-gray-200 rounded-lg" onClick={() => setIsOpen(false)}>
@@ -48,7 +48,6 @@ const Sidebar = () => {
                     <NavLink to="/dashboard" end className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>User Profile</NavLink>
                     <NavLink to="addservice" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>Add Service</NavLink> 
                     <NavLink to="myservices" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>My Added Services</NavLink>
-                    <NavLink to="bookinglogs" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>Booking Logs</NavLink>
                     <NavLink to="myreviews" className={({ isActive }) => `block p-2 text-[#0A303A] font-medium rounded-lg hover:bg-gray-200 ${isActive ? "bg-gray-200" : ""}`}>My Reviews</NavLink>
                     {isAdmin && (
                         <>

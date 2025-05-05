@@ -17,6 +17,8 @@ import Error from './Error.jsx';
 import Dashboard from './Dashboard/Dashboard.jsx';
 import Dashtext from './Dashboard/Dashtext.jsx';
 import AllUsers from './Dashboard/AllUsers.jsx';
+import AllServices from './Dashboard/AllServices.jsx';
+import AboutUs from './AboutUs.jsx';
 
 
 const router = createBrowserRouter([
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <Homecontent />,
         loader: () => fetch('https://servify-server.vercel.app/services')
+      },
+      {
+        path: '/about-us',
+        element: <AboutUs />,
       },
       {
         path: '/login',
@@ -98,6 +104,10 @@ const router = createBrowserRouter([
       {
         path: 'admin-alluser',
         element: <AllUsers/>,
+      },
+      {
+        path: 'admin-allservices',
+        element: <AllServices/>,
       }
 
     ],

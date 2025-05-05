@@ -32,14 +32,14 @@ const Header = () => {
                         <>
                             <NavLink to="/" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Home</NavLink>
                             <NavLink to="/services/all" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Services</NavLink>
-                            <NavLink to="/addservice" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Add Service</NavLink>
-                            <NavLink to="/myreviews" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>My Reviews</NavLink>
-                            <NavLink to="/myservices" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>My Services</NavLink>
+                            <NavLink to="/about-us" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>About Us</NavLink>
+
                         </>
                     ) : (
                         <>
                             <NavLink to="/" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Home</NavLink>
                             <NavLink to="/services" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>Services</NavLink>
+                            <NavLink to="/about-us" className={({ isActive }) => `font-medium ${isActive ? 'text-[#052843]' : 'text-gray-400'}`}>About Us</NavLink>
                         </>
                     )}
                 </div>

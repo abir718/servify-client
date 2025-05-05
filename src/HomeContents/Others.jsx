@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Others = () => {
     return (
         <div >
-            <div className="bg-white py-10">
+            <div className="bg-white py-6">
                 <div className="w-[90%] mx-auto bg-[#FFDEBF]  p-10 rounded-lg flex flex-col lg:flex-row items-center justify-around">
                     <div className="flex flex-col gap-6">
                         <h1 className="text-3xl font-bold ">Help millions make the right choice</h1>
