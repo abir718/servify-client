@@ -42,7 +42,7 @@ const Footer = () => {
 
                 </footer>
                 <div className="w-[100%] flex flex-col items-center mt-8 bg-[#052843]">
-                    <p className="text-white my-5 text-lg">© 2024 - 2030 | Alrights reserved by Servify.</p>
+                    <p className="text-white my-5 text-lg">© 2025 - 2030 | Alrights reserved by Servify.</p>
                 </div>
             </div>
         </div>
